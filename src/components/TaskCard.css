@@ -1,0 +1,42 @@
+.task-board-columns {
+  display: flex;
+  gap: 20px;
+}
+.task-board-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.task-card {
+  background: #fff;
+  padding: 15px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  flex: 1 1 auto; /* Ensure all cards shrink and grow at the same rate */
+}
+
+.task-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.task-card h3 {
+  margin-top: 0;
+}
+.task-card p {
+  margin: 5px 0;
+}
+.task-card.to-do {
+  border-left: 5px solid #ffc107; /* Yellow for 'To Do' */
+}
+.task-card.in-progress {
+  border-left: 5px solid #007bff; /* Blue for 'In Progress' */
+}
+.task-card.to-review {
+  border-left: 5px solid #ff9900; /* Orange for 'To Review' */
+}
+.task-card.completed {
+  border-left: 5px solid #28a745; /* Green for 'Completed' */
+}

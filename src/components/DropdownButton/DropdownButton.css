@@ -1,0 +1,49 @@
+/* DropdownButton.css */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.task-card .dropdown .dropdown-button {
+  background: none !important; /* Ensure no background */
+  border: none !important;
+  cursor: pointer !important;
+  font-size: 24px !important; /* Adjust font size as needed */
+  color: #000 !important; /* Adjust color to match your design */
+  padding: 0 !important; /* Ensure no padding */
+}
+
+.task-card .dropdown .dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.task-card .dropdown .dropdown-item {
+  padding: 10px !important; /* Ensure padding */
+  width: 100%;
+  text-align: left;
+  border: none !important;
+  background: none !important;
+  cursor: pointer !important;
+}
+
+.task-card .dropdown .dropdown-item:hover {
+  background: #f0f0f0 !important;
+}
+
+.task-card .dropdown .dropdown-item.delete:hover {
+  background: #f00 !important; /* Change background color to red on hover */
+  color: #fff !important; /* Ensure text color is visible */
+}
+
+.task-card .dropdown .dropdown-divider {
+  border: 0;
+  height: 1px;
+  background: #ccc; /* Color of the divider */
+  margin: 0; /* Adjust spacing if needed */
+}

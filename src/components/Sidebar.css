@@ -1,0 +1,34 @@
+.sidebar {
+  width: 250px;
+  background: #333;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-header {
+  padding: 20px;
+  font-size: 20px;
+  text-align: center;
+  background: #444;
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar-menu li {
+  padding: 15px;
+  text-align: center;
+}
+
+.sidebar-menu li a {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+}
+
+.sidebar-menu li a:hover {
+  background: #555;
+}
