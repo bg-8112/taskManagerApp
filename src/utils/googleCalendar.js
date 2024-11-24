@@ -2,9 +2,9 @@ const { google } = require("googleapis");
 const { OAuth2 } = google.auth;
 
 const oAuth2Client = new OAuth2(
-  "721976797583-ji5cd1snb9v8j17dsmg6p893ue5f0t2h.apps.googleusercontent.com", // Replace with your actual Client ID
-  "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", // Replace with your actual Client Secret
-  "http://localhost:3001/auth/google/callback" // Replace with your actual Redirect URL
+  process.env.REACT_APP_CLIENT_ID, // Replace with your actual Client ID
+  process.env.REACT_APP_CLIENT_SECRET, // Replace with your actual Client Secret
+  process.env.REACT_APP_CLIENT_URL // Replace with your actual Redirect URL
 );
 
 const getAuthUrl = () => {

@@ -1,10 +1,5 @@
 import React, { useState } from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  Redirect,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Sidebar from "./components/Sidebar";
 import TopBar from "./components/TopBar";
 import LoginPage from "./components/LoginPage/LoginPage";
@@ -24,26 +19,22 @@ const App = () => {
           <Sidebar />
           <div className="main-content">
             <TopBar />
-            <Switch>
-              <Route path="/dashboard" component={Dashboard} />
-              <Route path="/inbox" component={Inbox} />
-              <Route path="/calendar" component={Calendar} />
-              <Route path="/tasks" component={Tasks} />
-              <Route path="/">
-                <Redirect to="/dashboard" />
-              </Route>
-            </Switch>
+            <Routes>
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/inbox" element={<Inbox />} />
+              <Route path="/calendar" element={<Calendar />} />
+              <Route path="/tasks" element={<Tasks />} />
+              {/* Default route */}
+              <Route path="*" element={<Navigate to="/dashboard" replace />} />
+            </Routes>
           </div>
         </div>
       ) : (
-        <Switch>
-          <Route path="/login">
-            <LoginPage onLogin={setIsLoggedIn} />
-          </Route>
-          <Route path="/">
-            <Redirect to="/login" />
-          </Route>
-        </Switch>
+        <Routes>
+          <Route path="/login" element={<LoginPage onLogin={setIsLoggedIn} />} />
+          {/* Redirect to login if not authenticated */}
+          <Route path="*" element={<Navigate to="/login" replace />} />
+        </Routes>
       )}
     </Router>
   );

@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./TopBar.css";
 
 const TopBar = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleSignOut = () => {
     // Sign out logic here
     // For now, we'll just redirect to the login page
-    history.push("/login");
+    navigate("/login");
   };
 
   const toggleDropdown = () => {

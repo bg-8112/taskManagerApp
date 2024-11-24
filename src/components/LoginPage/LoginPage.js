@@ -1,14 +1,29 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
-import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
+import { useNavigate } from "react-router-dom";
+import {GoogleAuthProvider, signInWithPopup, getAuth} from "firebase/auth";
 import "./LoginPage.css";
+import { app } from "../../utils/firebase";
+
+const auth = getAuth(app);
 
 const LoginPage = ({ onLogin }) => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
-  const handleSuccess = (response) => {
-    console.log(response);
-    onLogin(true);
+  const handleSuccess = async () => {
+    try {
+      const provider = new GoogleAuthProvider();
+      const result = await signInWithPopup(auth, provider); // Open Google Sign-In popup
+      const token = await result.user.getIdToken(); // Get the ID token after successful sign-in
+      console.log(token);
+
+      // Send the toaken to the backend for further authentication
+      await onLogin(true);
+      navigate("/dashboard");
+
+     
+    } catch (error) {
+      console.error("Google sign-in error:", error); // Log any errors during the sign-in process
+    }
   };
 
   const handleFailure = (error) => {
@@ -19,21 +34,18 @@ const LoginPage = ({ onLogin }) => {
   const handleSkip = () => {
     // Set the login state to true for development purposes
     onLogin(true);
-    history.push("/dashboard");
+    navigate("/dashboard");
   };
 
   return (
-    <GoogleOAuthProvider clientId="YOUR_CLIENT_ID">
       <div className="login-page">
         <div className="login-form">
           <h2>Login</h2>
-          <GoogleLogin onSuccess={handleSuccess} onError={handleFailure} />
-          <button className="skip-button" onClick={handleSkip}>
-            Skip (under construction)
+          <button className="skip-button" onClick={handleSuccess}>
+            SignIn with Google
           </button>
         </div>
       </div>
-    </GoogleOAuthProvider>
   );
 };
 
