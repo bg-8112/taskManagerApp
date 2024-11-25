@@ -1,51 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TaskCard from "./TaskCard";
 import EditModal from "./EditModal/EditModal.js";
 import NewTaskModal from "./NewTaskModal/NewTaskModal.js"; // Import the new modal
 import "./TaskBoard.css";
 
 function TaskBoard() {
-  const [tasks, setTasks] = useState([
-    {
-      id: 1,
-      title: "Task 1",
-      description: "Task 1 description",
-      assignee: "John Doe",
-      assignedDate: "2024-11-20",
-      dueDate: "2024-11-25",
-      status: "to-do",
-    },
-    {
-      id: 2,
-      title: "Task 2",
-      description: "Task 2 description",
-      assignee: "Jane Smith",
-      assignedDate: "2024-11-21",
-      dueDate: "2024-11-26",
-      status: "in-progress",
-    },
-    {
-      id: 3,
-      title: "Task 3",
-      description: "Task 3 description",
-      assignee: "Alice Johnson",
-      assignedDate: "2024-11-22",
-      dueDate: "2024-11-27",
-      status: "to-review",
-    },
-    {
-      id: 4,
-      title: "Task 4",
-      description: "Task 4 description",
-      assignee: "Bob Brown",
-      assignedDate: "2024-11-23",
-      dueDate: "2024-11-28",
-      status: "completed",
-    },
-  ]);
-
+  const [tasks, setTasks] = useState([]);
   const [editingTask, setEditingTask] = useState(null);
   const [showNewTaskModal, setShowNewTaskModal] = useState(false);
+
+  useEffect(() => {
+    async function fetchTasks() {
+      try {
+        const response = await fetch('https://api.yourdatabase.com/tasks');
+        const data = await response.json();
+        setTasks(data);
+      } catch (error) {
+        console.error('Error fetching tasks:', error);
+      }
+    }
+
+    fetchTasks();
+  }, []);
 
   const addTask = (newTask) => {
     newTask.id = tasks.length + 1;

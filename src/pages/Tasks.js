@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Tasks.css";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -11,6 +11,21 @@ const Tasks = ({ tasks = [] }) => {
   const [taskList, setTaskList] = useState(tasks);
   const [selectedTask, setSelectedTask] = useState(null);
   const [activityLog, setActivityLog] = useState([]);
+  const [teamMembers, setTeamMembers] = useState([]);
+
+  useEffect(() => {
+    async function fetchTeamMembers() {
+      try {
+        const response = await fetch('https://api.yourdatabase.com/teamMembers');
+        const data = await response.json();
+        setTeamMembers(data);
+      } catch (error) {
+        console.error('Error fetching team members:', error);
+      }
+    }
+
+    fetchTeamMembers();
+  }, []);
 
   const handleEdit = (task) => {
     setEditingTask(task);
@@ -89,7 +104,7 @@ const Tasks = ({ tasks = [] }) => {
         <DialogContent className="dialog-content">
           <div className="dialog-main">
             {selectedTask && (
-              <TaskEditForm task={selectedTask} onSave={handleSave} onCancel={handleDialogClose} />
+              <TaskEditForm task={selectedTask} onSave={handleSave} onCancel={handleDialogClose} teamMembers={teamMembers} />
             )}
           </div>
           <div className="dialog-activity">
@@ -112,7 +127,7 @@ const Tasks = ({ tasks = [] }) => {
   );
 };
 
-const TaskEditForm = ({ task, onSave, onCancel }) => {
+const TaskEditForm = ({ task, onSave, onCancel, teamMembers }) => {
   const [updatedTask, setUpdatedTask] = useState(task);
 
   const handleChange = (e) => {
@@ -135,15 +150,16 @@ const TaskEditForm = ({ task, onSave, onCancel }) => {
         <label>
           Assignee:
           <Select name="assignee" value={updatedTask.assignee} onChange={handleChange} className="popup-dropdown">
-            <MenuItem value="John Doe">John Doe</MenuItem>
-            <MenuItem value="Jane Smith">Jane Smith</MenuItem>
-            <MenuItem value="Alice Johnson">Alice Johnson</MenuItem>
-            <MenuItem value="Bob Brown">Bob Brown</MenuItem>
+            {teamMembers.map(member => (
+              <MenuItem key={member.id} value={member.name}>
+                {member.name}
+              </MenuItem>
+            ))}
           </Select>
         </label>
         <label>
           Due Date:
-          <input type="date" name="dueDate" value={updatedTask.dueDate} onChange={handleChange}  />
+          <input type="date" name="dueDate" value={updatedTask.dueDate} onChange={handleChange} />
         </label>
       </div>
       <div className="form-row">

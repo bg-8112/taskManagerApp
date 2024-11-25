@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Sidebar from "./components/Sidebar";
 import TopBar from "./components/TopBar";
@@ -9,12 +9,23 @@ import Calendar from "./pages/Calendar";
 import Tasks from "./pages/Tasks";
 import "./App.css";
 
-
-const tasks = [ { id: 1, title: "Complete project report", assignee: "John Doe", dueDate: "2024-11-25", priority: "Urgent", status: "complete", comments: "Comment 1, Comment 2" }, { id: 2, title: "Update website content", assignee: "Jane Smith", dueDate: "2024-11-26", priority: "High", status: "in-progress", comments: "Comment 1" }, { id: 3, title: "Plan team meeting", assignee: "Alice Johnson", dueDate: "2024-11-27", priority: "Normal", status: "to-do", comments: "Comment 1, Comment 2, Comment 3" }, { id: 4, title: "Conduct code review", assignee: "Bob Brown", dueDate: "2024-11-28", priority: "Low", status: "to-do", comments: "" } ];
-
-
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const [tasks, setTasks] = useState([]);
+  useEffect(() => {
+    async function fetchTasks() {
+      try {
+        const response = await fetch('https://api.yourdatabase.com/tasks');
+        const data = await response.json();
+        setTasks(data);
+      } catch (error) {
+        console.error('Error fetching tasks:', error);
+      }
+    }
+
+    fetchTasks();
+  }, []);
 
   return (
     <Router>
@@ -27,8 +38,7 @@ const App = () => {
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/inbox" element={<Inbox />} />
               <Route path="/calendar" element={<Calendar tasks={tasks} />} />
-              <Route path="/tasks" element={<Tasks tasks={tasks}/>} />
-              
+              <Route path="/tasks" element={<Tasks tasks={tasks} />} />
               <Route path="*" element={<Navigate to="/dashboard" replace />} />
             </Routes>
           </div>

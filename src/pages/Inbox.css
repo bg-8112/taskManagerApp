@@ -1,7 +1,23 @@
-.inbox {
+.inbox-container {
   padding: 20px;
+  background-color: #f4f4f4;
+  border-radius: 8px;
 }
 
-.inbox h1 {
-  margin-bottom: 20px;
+.MuiPaper-root {
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+}
+
+.MuiListItem-root {
+  border-bottom: 1px solid #ddd;
+}
+
+.MuiListItemText-primary {
+  font-weight: bold;
+}
+
+.MuiListItemText-secondary {
+  color: #777;
 }
