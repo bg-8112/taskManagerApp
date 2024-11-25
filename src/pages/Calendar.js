@@ -10,12 +10,17 @@ const TaskCalendar = ({ tasks = [] }) => {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
-    const formattedTasks = tasks.map((task) => ({
-      title: task.title,
-      start: new Date(task.assignedDate),
-      end: new Date(task.dueDate),
-      allDay: false,
-    }));
+    const formattedTasks = tasks.map((task) => {
+      const assignedDate = moment(task.dueDate).toDate();
+      const dueDate = moment(task.dueDate).toDate();
+      
+      return {
+        title: task.title,
+        start: assignedDate,
+        end: dueDate,
+        allDay: false,
+      };
+    });
     setEvents(formattedTasks);
   }, [tasks]);
 
@@ -30,7 +35,7 @@ const TaskCalendar = ({ tasks = [] }) => {
         events={events}
         startAccessor="start"
         endAccessor="end"
-        style={{ height: "100vh", width: "100%" }}
+        style={{ height: "95vh", width: "100%" }} // Adjusted height here
         selectable
         onSelectEvent={handleSelectEvent}
       />

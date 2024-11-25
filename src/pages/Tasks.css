@@ -1,103 +1,156 @@
-.tasks-page {
+.tasks-container {
   padding: 20px;
+  background-color: #f4f4f4;
+  border-radius: 8px;
 }
 
-.tasks-page__title {
-  margin-bottom: 20px;
+.tasks-header, .task-row {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
 }
 
-.tasks-page__form {
+.tasks-header {
+  background-color: #eee;
+  font-weight: bold;
+}
+
+.task-row {
+  flex: 1;
+}
+
+.tasks-column {
+  padding: 0 10px;
+}
+
+.task-name {
+  flex: 3; /* Allocate more space to the Name column */
+  cursor: pointer; /* Change mouse cursor to pointer */
+}
+
+.task-assignee {
+  flex: 2; /* Allocate more space to the Assignee column */
+}
+
+.task-due-date,
+.task-priority,
+.task-status,
+.task-comments,
+.task-actions {
+  flex: 1; /* Minimize space for other columns */
+}
+
+.task-actions {
+  display: flex;
+  gap: 5px;
+}
+
+.task-actions .MuiIconButton-root {
+  padding: 4px;
+}
+
+.popup-dropdown {
+  width: 100%; /* Ensures full width */
+  margin: 0; /* Prevents extra margins */
+  padding: 0px; /* Adds spacing inside the dropdown */
+
+}
+
+.popup-dropdown .MuiSelect-select{
+  padding: 10px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.popup-dropdown .muiOutlinedInput-root{
+  height: 30px;
+}
+.popup-dropdown .MuiMenuItem-root{
+  padding: 5px 10px;
+}
+
+.task-edit-form {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin-bottom: 20px;
 }
 
-.tasks-page__form-input,
-.tasks-page__form-select {
-  padding: 10px;
+.task-edit-form label {
+  display: flex;
+  flex-direction: column;
+}
+
+.task-edit-form input,
+.task-edit-form textarea,
+.task-edit-form select {
+  padding: 5px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  resize: none; /* Disable resizing */
 }
 
-.tasks-page__form-button {
-  padding: 10px;
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px; /* Add gap between form fields */
+}
+
+.form-row label {
+  flex: 1; /* Ensure equal space for labels in form row */
+}
+
+.task-edit-form button {
+  padding: 5px 10px;
   border: none;
+  background-color: #007bff;
+  color: white;
   border-radius: 4px;
-  background: #28a745;
-  color: #fff;
   cursor: pointer;
 }
 
-.tasks-page__form-button:hover {
-  background: #218838;
+.task-edit-form button[type="button"] {
+  background-color: #dc3545; /* Red for cancel button */
 }
 
-.tasks-page__board {
+.dialog-content {
   display: flex;
-  gap: 20px;
-  align-items: flex-start;
+  gap: 20px; /* Add gap between main content and activity log */
 }
 
-.tasks-page__column {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+.dialog-main {
+  width: 70%;
+}
+
+.dialog-activity {
+  width: 30%;
   padding: 10px;
-  border-radius: 4px;
+  background-color: #f9f9f9;
+  border-left: 1px solid #ddd;
+  overflow-y: auto; /* Ensure content is scrollable if it overflows */
+  max-height: 400px; /* Set a maximum height for the activity log */
 }
 
-.tasks-page__column--to-do {
-  background-color: #fffbe6;
+.dialog-activity h3 {
+  margin-top: 0;
+  font-size: 1.2em;
 }
 
-.tasks-page__column--in-progress {
-  background-color: #e6f7ff;
+.dialog-activity ul {
+  list-style-type: none;
+  padding-left: 0;
 }
 
-.tasks-page__column--to-review {
-  background-color: #fff3e6;
-}
-
-.tasks-page__column--completed {
-  background-color: #e6ffe6;
-}
-
-.tasks-page__column-title {
+.dialog-activity li {
   margin-bottom: 10px;
 }
 
-.tasks-page__task-card {
-  width: 100%;
-  background: #fff;
-  padding: 20px;
-  margin-bottom: 20px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.dialog-activity p {
+  margin: 0;
+  font-size: 0.9em;
 }
 
-.tasks-page__task-card-title {
-  margin-top: 0;
-}
-
-.tasks-page__task-card-text {
-  margin: 5px 0;
-}
-
-.tasks-page__task-card--to-do {
-  border-left: 5px solid #ffc107;
-}
-
-.tasks-page__task-card--in-progress {
-  border-left: 5px solid #007bff;
-}
-
-.tasks-page__task-card--to-review {
-  border-left: 5px solid #ff9900;
-}
-
-.tasks-page__task-card--completed {
-  border-left: 5px solid #28a745;
+.dialog-activity span {
+  font-size: 0.8em;
+  color: #777;
 }
