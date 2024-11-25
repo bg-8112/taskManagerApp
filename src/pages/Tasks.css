@@ -53,7 +53,7 @@
 .popup-dropdown {
   width: 100%; /* Ensures full width */
   margin: 0; /* Prevents extra margins */
-  padding: 0px; /* Adds spacing inside the dropdown */
+  padding: 0ch; /* Adds spacing inside the dropdown */
 
 }
 
