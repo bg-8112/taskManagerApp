@@ -7,24 +7,23 @@ import Dashboard from "./pages/Dashboard";
 import Inbox from "./pages/Inbox";
 import Calendar from "./pages/Calendar";
 import Tasks from "./pages/Tasks";
+import { fetchTasks } from "./utils/api";
 import "./App.css";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
   const [tasks, setTasks] = useState([]);
+  
   useEffect(() => {
-    async function fetchTasks() {
-      try {
-        const response = await fetch('https://api.yourdatabase.com/tasks');
-        const data = await response.json();
-        setTasks(data);
-      } catch (error) {
-        console.error('Error fetching tasks:', error);
+    const loadTasks = async () =>{
+      try{
+        const taskData = await fetchTasks();
+        setTasks(taskData);
+      }catch (err){
+        console.error('Error fetching tasks in App.js:', err );
       }
-    }
-
-    fetchTasks();
+    };
+    loadTasks();
   }, []);
 
   return (

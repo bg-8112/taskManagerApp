@@ -1,9 +1,14 @@
 .sidebar {
+  position: fixed; /* Fixes the sidebar to the left side of the screen */
+  top: 0; /* Keeps it at the top of the page */
+  left: 0; /* Ensures it's aligned to the left side */
   width: 250px;
+  height: 100%; /* Ensures the sidebar takes up the full height of the viewport */
   background: #333;
   color: #fff;
   display: flex;
   flex-direction: column;
+  z-index: 1000; /* Ensures the sidebar stays on top of other elements */
 }
 
 .sidebar-header {

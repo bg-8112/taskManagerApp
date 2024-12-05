@@ -1,12 +1,19 @@
 .topbar {
+  position: fixed; /* Fixes the top bar to the top of the page */
+  top: 0;
+  left: 0;
+  width: 100%; /* Ensures the top bar spans the full width */
   height: 60px;
+  margin-left: 250px;
   background: #f8f9fa;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 20px; /* Adjusted padding */
+  padding: 0 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 999; /* Ensures the topbar stays on top of other elements */
 }
+
 
 .topbar-left input[type="text"] {
   width: 300px;

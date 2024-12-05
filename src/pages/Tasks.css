@@ -1,3 +1,11 @@
+*{
+  box-sizing: border-box;
+}
+
+.MuiPaper-root{
+  padding: 0;
+}
+
 .tasks-container {
   padding: 20px;
   background-color: #f4f4f4;
@@ -46,6 +54,7 @@
   gap: 5px;
 }
 
+
 .task-actions .MuiIconButton-root {
   padding: 4px;
 }
@@ -73,7 +82,7 @@
 .task-edit-form {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
 }
 
 .task-edit-form label {
@@ -84,11 +93,24 @@
 .task-edit-form input,
 .task-edit-form textarea,
 .task-edit-form select {
-  padding: 5px;
+  padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
   resize: none; /* Disable resizing */
+  width: 100%;  
 }
+
+
+
+
+.task-edit-form-description{
+  height: 75px;
+}
+.task-edit-form-comments{
+  height: 50px;
+}
+
+
 
 .form-row {
   display: flex;
@@ -100,8 +122,16 @@
   flex: 1; /* Ensure equal space for labels in form row */
 }
 
+
+.task-edit-form .form-buttons{
+  display: flex;
+  gap: 20px;
+  
+}
+
 .task-edit-form button {
-  padding: 5px 10px;
+  padding: 5px;
+  width: 100px;
   border: none;
   background-color: #007bff;
   color: white;
@@ -119,16 +149,16 @@
 }
 
 .dialog-main {
-  width: 70%;
+  width: 50%;
 }
 
 .dialog-activity {
-  width: 30%;
+  width: 45%;
   padding: 10px;
   background-color: #f9f9f9;
   border-left: 1px solid #ddd;
   overflow-y: auto; /* Ensure content is scrollable if it overflows */
-  max-height: 400px; /* Set a maximum height for the activity log */
+  max-height: 455px; /* Set a maximum height for the activity log */
 }
 
 .dialog-activity h3 {
@@ -154,3 +184,146 @@
   font-size: 0.8em;
   color: #777;
 }
+
+
+
+/* Add Task Dialog Form */
+.task-add-form {
+  background-color: #fff; /* White background for the form */
+  border-radius: 8px; /* Rounded corners */
+  padding: 0; /* Padding inside the form */
+  width: 400px; /* Width of the form dialog */
+  
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+/* Title field */
+.task-add-form label {
+  font-size: 1em;
+  color: #333;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.task-add-form input,
+.task-add-form textarea,
+.task-add-form select {
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  resize: none;
+}
+
+/* Focus effect for inputs */
+.task-add-form input:focus,
+.task-add-form textarea:focus,
+.task-add-form select:focus {
+  border-color: #007bff; /* Blue border on focus */
+  outline: none;
+}
+
+.task-add-form-description{
+  height: 80px;
+}
+.task-add-form-comments{
+  height: 60px;
+}
+
+
+
+
+
+
+/* Form Row (to separate fields) */
+.task-add-form .form-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+/* Buttons container */
+.task-add-form .form-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  
+}
+
+.task-add-form .form-buttons button {
+  padding: 5px;
+  font-size: 14px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+
+}
+
+/* Save button style */
+.task-add-form .form-buttons button[type="submit"] {
+  background-color: #28a745; /* Green for save button */
+  color: white;
+}
+
+.task-add-form .form-buttons button[type="submit"]:hover {
+  background-color: #218838; /* Darker green on hover */
+}
+
+/* Cancel button style */
+.task-add-form .form-buttons button[type="button"] {
+  background-color: #dc3545; /* Red for cancel button */
+  color: white;
+}
+
+.task-add-form .form-buttons button[type="button"]:hover {
+  background-color: #c82333; /* Darker red on hover */
+}
+
+/* Popup dropdown styles */
+.task-add-form .popup-dropdown {
+  width: 100%; /* Ensure full width */
+  margin: 0; /* Prevent extra margins */
+  padding: 0ch; /* Adds spacing inside the dropdown */
+}
+
+.task-add-form .popup-dropdown .MuiSelect-select {
+  padding: 10px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.task-add-form .MuiPaper-root{
+  padding: 0;
+}
+.task-add-form .popup-dropdown .muiOutlinedInput-root {
+  height: 30px;
+ }
+
+.task-add-form .popup-dropdown .MuiMenuItem-root {
+  padding: 5px 10px;
+}
+
+/* Responsive design (for smaller screens) */
+@media (max-width: 400px) {
+  .task-add-form {
+    width: 400px; /* Full width on smaller screens */
+    padding: 15px; /* Reduced padding */
+  }
+
+  .task-add-form .form-row {
+    flex-direction: column; /* Stack form rows vertically */
+    gap: 10px; /* Reduced gap */
+  }
+
+  .task-add-form .form-buttons {
+    flex-direction: column; /* Stack buttons vertically */
+  }
+}
+
+
+

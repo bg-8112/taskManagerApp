@@ -11,8 +11,9 @@ const TaskCalendar = ({ tasks = [] }) => {
 
   useEffect(() => {
     const formattedTasks = tasks.map((task) => {
-      const assignedDate = moment(task.dueDate).toDate();
-      const dueDate = moment(task.dueDate).toDate();
+      const assignedDate = moment(task.due_date).toDate();
+      const dueDate = moment(task.due_date).toDate();
+
       
       return {
         title: task.title,
